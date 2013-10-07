@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Росвар Инфо</title>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="wrapper">
+  <header>
+    <nav role="navigation">
+      <%= link_to :root, :class => 'brand' do %>
+          Росвар<span class="light">Инфо</span>
+      <% end %>
+
+      <ul>
+        <li><%= link_to 'Анализатор Стенок', :fights %></li>
+        <li><%= link_to 'Максимальные статы', :stats %></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div id="content" role="main">
+
+    <% flash.each do |type, data| %>
+        <div class="alert alert-<%= type == :alert ? 'danger' : 'info' %>">
+          <% if data.kind_of?(Array) then %>
+              <% data.each do |message| %>
+                  <p><%= message %></p>
+              <% end %>
+          <% else %>
+              <p><%= data %></p>
+          <% end %>
+        </div>
+    <% end %>
+
+    <%= yield %>
+
+    <div class="comments-form">
+      <h3>Оставить комментарий</h3>
+
+      <div id="vk_comments"></div>
+    </div>
+
+    <script type="text/javascript" src="//vk.com/js/api/openapi.js?97"></script>
+    <script type="text/javascript">
+        VK.init({apiId: 3753967, onlyWidgets: true});
+        VK.Widgets.Comments("vk_comments", {limit: 10, width: "520", attach: "photo,video"});
+    </script>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <h3>Росвар<span class="light">Инфо</span></h3>
+
+    <p>
+      contact@roswar.info
+      <br>
+      © Copyright 2013
+    </p>
+  </div>
+</footer>
+
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+</body>
+</html>

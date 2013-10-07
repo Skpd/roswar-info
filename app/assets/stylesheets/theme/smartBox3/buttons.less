@@ -1,0 +1,63 @@
+.btn-default {
+  .button-variant(white, #42516a, #424a6a);
+}
+
+.btn-primary {
+  .button-variant(white, #42516a, #424a6a);
+}
+
+// Warning appears as orange
+.btn-warning {
+  .button-variant(white, #ec8228, #e57211);
+}
+
+// Danger and error appear as red
+.btn-danger {
+  .button-variant(white, #a24343, #8d3a3a);
+}
+
+// Success appears as green
+.btn-success {
+  .button-variant(white, #3a706a, #305d57);
+}
+
+// Info appears as blue-green
+.btn-info {
+  .button-variant(white, #6095be, #65a7da);
+}
+
+.button-variant(@color, @background, @border) {
+  color: @color;
+  background-color: @background;
+  border-color: @border;
+  border-color: @border @border lighter(@border, 8%);
+  background-image: linear-gradient(to bottom, @background, darken(@background, 8%));
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active,
+  .open .dropdown-toggle& {
+    color: @color;
+    background-color: darken(@background, 8%);
+    border-color: darken(@border, 12%) darken(@border, 12%) darken(@border, 8%);
+    background-image: linear-gradient(to bottom, darken(@background, 8%), darken(@background, 12%));
+  }
+  &:active,
+  &.active,
+  .open .dropdown-toggle& {
+    background-image: none;
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      background-color: @background;
+      border-color: @border
+    }
+  }
+}

@@ -1,0 +1,43 @@
+<section class="section section-padded">
+  <div class="container-fluid">
+    <div class="section-header">
+      <h1 class="animated fadeinup delayed">
+        <span class="light">Анализатор</span> Стенок
+      </h1>
+    </div>
+    <section class="section">
+      <div class="row-fluid">
+        <div class="super-hero-unit">
+          <figure class="text-center">
+            <%= image_tag 'groupfight.png', :style => 'width: 100%;', :alt => 'Анализатор Стенок' %>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <%= form_for @fight do |f| %>
+        <div class="form-group<% if @fight.errors.any? %> has-error<% end %>">
+          <div class="fight-url">
+            <%= f.label :url, 'Ссылка на лог боя', :class => 'control-label' %>
+            <div class="input-group">
+              <%= f.text_field :url, :class => 'form-control', :required => true %>
+              <div class="input-group-btn">
+                <button type="submit" class="btn btn-primary">
+                  <i class="icon-refresh"></i>
+                </button>
+              </div>
+            </div>
+            <% if @fight.errors.any? %>
+                <div class="help-block">
+                  <ul class="list-unstyled">
+                    <% @fight.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+                </div>
+            <% end %>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</section>
